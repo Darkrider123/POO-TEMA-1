@@ -8,18 +8,20 @@ using namespace std;
 
 class graf
  {
-    int a[50][50];
+    int **a;
     int n;
 
 
  public:
      graf();
-     ~graf(){};
-    DeterminareDrumuri();
-    ComponenteConexe();
-    ETareConex();
+     graf(int c);
+     ~graf();
+     graf(const graf &ob);
+   void DeterminareDrumuri();
+   void ComponenteConexe();
+   void ETareConex();
 
-
+    graf operator = (const graf &ob);
     graf operator + (const graf &ob1);
    friend istream & operator >>(istream & in,graf &ob);
    friend ostream & operator <<(ostream & out, const graf &ob);
@@ -27,3 +29,4 @@ class graf
  };
 
  #endif // GRAF_H_
+
