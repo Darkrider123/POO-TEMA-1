@@ -113,8 +113,8 @@ else {
     if (n<=0) return;
     for (i=0;i<n+1;i++)
     delete[] a[i];
-
      delete[] a;
+     n=0;
  }
 
 
@@ -134,6 +134,10 @@ if (ob.n<=0) return out;
 istream & operator >>(istream &in, graf &ob)
 {int x;
 int i,j;
+
+if (ob.n>0)
+    ob.~graf();
+
 cout<<"Introdu numarul de noduri: ";
      in>>ob.n;
      cout<<"\n";
