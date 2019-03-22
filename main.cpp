@@ -11,15 +11,7 @@ int main()
    ifstream f ("COCO.txt");
    ofstream fout ("COCOOUT.txt");
 
-  graf a,b;
-  cin>>a;
-  f>>b;
-  cout<<a+b;
-
 
 
     return 0;
 }
-
-
-
