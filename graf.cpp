@@ -21,7 +21,7 @@ graf graf::operator =(const graf &ob)
              return *this;
     }
     if (ob.n<=0)
-    { 
+    {
          for (i=0;i<n+1;i++)
     delete[] a[i];
      delete[] a;
@@ -198,20 +198,21 @@ int recursie (int **a,int &n,int &cautat,int curent,int &c)
 void graf::DeterminareDrumuri()
 {
 
-   int b[300][300],i,j,c;
+   int i,j,c;
+   graf b(n);
 
    for (i=1;i<=n;i++)
     for (j=1;j<=n;j++)
-      b[i][j]=a[i][j];
+      b.a[i][j]=a[i][j];
 
     for (i=1;i<=n;i++)
         for (j=1;j<=n;j++)
         { c=5000;
-          if (recursie(a,n,j,i,c)==1)b[i][j]=1;
+          if (recursie(a,n,j,i,c)==1)b.a[i][j]=1;
         }
      for (i=1;i<=n;i++)
     for (j=1;j<=n;j++)
-      a[i][j]=b[i][j];
+      a[i][j]=b.a[i][j];
 
       cout<<*this;
 }
@@ -219,13 +220,14 @@ void graf::DeterminareDrumuri()
 
 void graf::ComponenteConexe()
 {
-       int i,j,c,v[300],vizitate[300]={0},ok;
-
-
+       int i,j,c,*v,*vizitate,ok;
+       v= new int [n+2];
+       vizitate= new int [n+2];
+        for (c=0;c<n+2;c++)vizitate[c]=0;
 
     for (i=1;i<=n;i++)
     {
-        for (c=0;c<60;c++)v[c]=0;
+        for (c=0;c<n+2;c++)v[c]=0;
 
         for (j=1;j<=n;j++)
         { c=5000;
@@ -262,7 +264,8 @@ void graf::ComponenteConexe()
 
 
     }
-
+delete[] v;
+delete[] vizitate;
 }
 
 void graf::ETareConex()
