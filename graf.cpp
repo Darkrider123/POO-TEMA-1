@@ -5,7 +5,7 @@
 using namespace std;
 
 graf graf::operator =(const graf &ob)
-{
+{ if (this==&ob) return *this;
      int i,j;
     if (n<=0&&ob.n>0)
     {
@@ -21,7 +21,10 @@ graf graf::operator =(const graf &ob)
              return *this;
     }
     if (ob.n<=0)
-    {
+    { 
+         for (i=0;i<n+1;i++)
+    delete[] a[i];
+     delete[] a;
         n=0;
         return *this;
     }
@@ -66,6 +69,7 @@ graf graf::operator + (const graf &ob1)
 graf::graf ()
  {
         n=0;
+        a=NULL;
  }
 
 graf::graf(const graf &ob)
@@ -194,7 +198,7 @@ int recursie (int **a,int &n,int &cautat,int curent,int &c)
 void graf::DeterminareDrumuri()
 {
 
-   int b[n][n],i,j,c;
+   int b[300][300],i,j,c;
 
    for (i=1;i<=n;i++)
     for (j=1;j<=n;j++)
@@ -215,7 +219,7 @@ void graf::DeterminareDrumuri()
 
 void graf::ComponenteConexe()
 {
-       int i,j,c,v[600],vizitate[600]={0},ok;
+       int i,j,c,v[300],vizitate[300]={0},ok;
 
 
 
